@@ -6,7 +6,7 @@
     android:weightSum="1">
 
     <TextView
-        android:text="TextView"
+        android:text="Login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
@@ -20,7 +20,7 @@
         android:id="@+id/login" />
 
     <TextView
-        android:text="TextView"
+        android:text="Password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
@@ -38,10 +38,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button2"
-        android:onClick="SendData" />
+        android:onClick="checkUserInfo" />
 
     <TextView
-        android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView5"

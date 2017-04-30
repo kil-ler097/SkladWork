@@ -23,14 +23,14 @@ public class LastActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lastlayout);
-        Intent intent = new Intent(this, MainActivity.class);
-
-
-        txtLogin = (EditText) findViewById(R.id.txtlogin);
-        txtPassword = (EditText) findViewById(R.id.txtpassword);
-
-        txtLogin.setText(getIntent().getStringExtra("login"));
-        txtPassword.setText(getIntent().getStringExtra("pass"));
+//        Intent intent = new Intent(this, MainActivity.class);
+//
+//
+//        txtLogin = (EditText) findViewById(R.id.txtlogin);
+//        txtPassword = (EditText) findViewById(R.id.txtpassword);
+//
+//        txtLogin.setText(getIntent().getStringExtra("login"));
+//        txtPassword.setText(getIntent().getStringExtra("pass"));
 
     }
     public void back (View view){

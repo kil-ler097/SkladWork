@@ -1,5 +1,6 @@
 package com.example.evgeniy.android_less_7;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -54,37 +55,28 @@ public class MainActivity extends AppCompatActivity {
                 .baseUrl("http://php7.demo20277.atservers.net/web/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         GetUserservice service = retrofit.create(GetUserservice.class);
-
         Call<List<Users>> repos = service.getUserDetails();
 
         repos.enqueue(new Callback<List<Users>>() {
             @Override
             public void onResponse(Call<List<Users>> call, Response<List<Users>> response) {
                 List<Users> users = response.body();
-
                 String details = "";
-
                 for (int i = 0; i<users.size();i++){
                     String name = users.get(i).getUsername();
                     details +="name  :" + name;
                     logview.setText(details);
-                    checkUserInfo();
                 }
-
             }
-
             @Override
             public void onFailure(Call<List<Users>> call, Throwable t) {
 
             }
         });
-
-
     }
 
-        public void checkUserInfo(){
+        public void checkUserInfo(View view){
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://php7.demo20277.atservers.net/web/")
                     .addConverterFactory(GsonConverterFactory.create())
@@ -96,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
             users.setPassword(password.getText().toString());
            // logview.setText(users.getUsername()+users.getPassword());
 
-
            final Call<Users> repos = service.checkUserInfo(users.getUsername(),users.getPassword());
 
             repos.enqueue(new Callback<Users>() {
@@ -104,10 +95,12 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(Call<Users> call, Response<Users> response) {
                     List<String> json = response.headers().values("Message");
                     String rev = json.toString();
-                    if (rev == "[true]"){
-                        
-                    }
 
+                    if (rev.equals("[true]")){
+                        GooDAuth();
+                    }else{
+                        logview.setText("Неправильный логин или пароль");
+                    }
                 }
 
                 @Override
@@ -118,16 +111,11 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-
-    public void SendData (View view){
-
-
-        checkUserInfo();
-
-//        Intent intent = new Intent(this, LastActivity.class);
-//        intent.putExtra("login",login.getText().toString());
-//        intent.putExtra("pass",password.getText().toString());
-//        startActivity(intent);
-
+    public void GooDAuth(){
+        Intent intent = new Intent(this, LastActivity.class);
+        intent.putExtra("login",login.getText().toString());
+        intent.putExtra("pass",password.getText().toString());
+        startActivity(intent);
     }
+
 }
