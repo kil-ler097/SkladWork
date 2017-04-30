@@ -21,9 +21,10 @@ public interface GetUserservice {
 
     @FormUrlEncoded
     @POST("user/authorize/")
-    Call<Users> checkUserInfo(
-            @Field("username") String username,
-            @Field("password") String password);
+    Call<Users> checkUserInfo(@Field("username") String username,@Field("password") String password);
+
+
+
 }
 
 

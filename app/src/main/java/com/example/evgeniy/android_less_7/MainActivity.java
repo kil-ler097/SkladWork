@@ -12,6 +12,10 @@ import com.example.evgeniy.android_less_7.service.GetUserservice;
 
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.Call;
@@ -93,17 +97,22 @@ public class MainActivity extends AppCompatActivity {
            // logview.setText(users.getUsername()+users.getPassword());
 
 
-            Call<Users> repos = service.checkUserInfo(users.getUsername(),users.getPassword());
+           final Call<Users> repos = service.checkUserInfo(users.getUsername(),users.getPassword());
 
             repos.enqueue(new Callback<Users>() {
                 @Override
                 public void onResponse(Call<Users> call, Response<Users> response) {
-                    logview.setText("asd");
+                    List<String> json = response.headers().values("Message");
+                    String rev = json.toString();
+                    if (rev == "[true]"){
+                        
+                    }
+
                 }
 
                 @Override
                 public void onFailure(Call<Users> call, Throwable t) {
-
+                    logview.setText(t.getMessage()+"\n");
                 }
             });
 
