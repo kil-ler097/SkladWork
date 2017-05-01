@@ -16,5 +16,5 @@ import retrofit2.http.POST;
 public interface GetDataService {
     @FormUrlEncoded
     @POST("data/getdatabysklad/")
-    Call<List<Data>> getDataDetails(@Field("s_id") int s_id);
+    Call<List<Data>> getDataDetails(@Field("s_id") String s_id);
 }

@@ -3,7 +3,6 @@ package com.example.evgeniy.android_less_7;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -45,24 +44,7 @@ public class LastActivity extends AppCompatActivity {
         setContentView(R.layout.lastlayout);
 
         logview = (TextView) findViewById(R.id.textView3);
-
-
         getSkladDetails();
-
-
-
-      //  lastA = (LinearLayout) findViewById(R.id.container);
-
-       // getSkladDetails();
-
-//        Intent intent = new Intent(this, MainActivity.class);
-//
-//
-//        txtLogin = (EditText) findViewById(R.id.txtlogin);
-//        txtPassword = (EditText) findViewById(R.id.txtpassword);
-//
-//        txtLogin.setText(getIntent().getStringExtra("login"));
-//        txtPassword.setText(getIntent().getStringExtra("pass"));
 
     }
 
@@ -87,13 +69,15 @@ public class LastActivity extends AppCompatActivity {
                     final int sklad_id = sklad.get(i).getId();
                     btn = new Button(LastActivity.this);
 //                    btn.setLayoutParams(layoutParams);
-                    btn.setId(i);
                     btn.setText(name);
                     btn.setId(sklad_id);
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            getDataDetails(sklad_id);
+                            Intent intent = new Intent(LastActivity.this, InfoSkladActivity.class);
+                            intent.putExtra("sklad_id",Integer.toString(sklad_id));
+                            startActivity(intent);
+                         //   getDataDetails(sklad_id);
                         }
                     });
                     llt.addView(btn);
@@ -110,36 +94,7 @@ public class LastActivity extends AppCompatActivity {
 
     }
 
-    public void getDataDetails(int s_id){
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://php7.demo20277.atservers.net/web/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        GetDataService service = retrofit.create(GetDataService.class);
-        Call<List<Data>> repos = service.getDataDetails(s_id);
-        logview.setText(String.valueOf(s_id)+"new");
-
-        repos.enqueue(new Callback<List<Data>>() {
-            @Override
-            public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {
-                final List<Data> data = response.body();
-
-                String details = "";
-                for (int i = 0; i<data.size();i++){
-                    String T1 = data.get(i).getT1();
-                    details +="T1  :" + T1;
-                    logview.setText(details);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Data>> call, Throwable t) {
-
-            }
-        });
-
-    }
 
     public void back (View view){
         Intent intent = new Intent(this,MainActivity.class);

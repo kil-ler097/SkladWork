@@ -3,4 +3,9 @@
     <string name="info_btn">Информация</string>
     <string name="good_btn">Товары</string>
     <string name="suppliers_btn">Поставщики</string>
+    <string name="sklad_name">Название склада:</string>
+    <string name="sklad_data">Информация о складе:</string>
+    <string name="supplier_name">Название поставщика:</string>
+    <string name="supplier_data">Информация о поставщикe:</string>
+    <string name="Save">Сохранить</string>
 </resources>

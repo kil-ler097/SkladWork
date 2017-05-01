@@ -17,8 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LastActivity"></activity>
-        <activity android:name=".InfoSkladActivity"></activity>
+        <activity android:name=".LastActivity" />
+        <activity android:name=".InfoSkladActivity" />
+        <activity android:name=".ListTovarActivity" />
+        <activity android:name=".AboutSkladActivity" />
+        <activity android:name=".InfoTovarActivity" />
+        <activity android:name=".SupplierActivity"></activity>
     </application>
 
 </manifest>
