@@ -11,7 +11,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.evgeniy.android_less_7.model.Data;
 import com.example.evgeniy.android_less_7.model.Sklad;
+import com.example.evgeniy.android_less_7.service.GetDataService;
 import com.example.evgeniy.android_less_7.service.GetSkladService;
 
 import java.util.ArrayList;
@@ -35,7 +37,7 @@ public class LastActivity extends AppCompatActivity {
     private EditText txtPassword;
     private TextView logview;
 //android.support.constraint.ConstraintLayout
-    LinearLayout llt;
+    private LinearLayout llt;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,7 +46,9 @@ public class LastActivity extends AppCompatActivity {
 
         logview = (TextView) findViewById(R.id.textView3);
 
-        llt = (LinearLayout) findViewById(R.id.container);
+
+        getSkladDetails();
+
 
 
       //  lastA = (LinearLayout) findViewById(R.id.container);
@@ -73,26 +77,64 @@ public class LastActivity extends AppCompatActivity {
         repos.enqueue(new Callback<List<Sklad>>() {
             @Override
             public void onResponse(Call<List<Sklad>> call, Response<List<Sklad>> response) {
-                    List<Sklad> sklad = response.body();
+                    final List<Sklad> sklad = response.body();
                     String details = "";
-                LinearLayout llt = (LinearLayout) findViewById(R.id.container);
+                llt = (LinearLayout) findViewById(R.id.container2);
                 Button btn = new Button(LastActivity.this);
 
                 for (int i = 0; i<sklad.size();i++){
-                    String name = sklad.get(i).getName();
-
+                    final String name = sklad.get(i).getName();
+                    final int sklad_id = sklad.get(i).getId();
                     btn = new Button(LastActivity.this);
 //                    btn.setLayoutParams(layoutParams);
                     btn.setId(i);
                     btn.setText(name);
+                    btn.setId(sklad_id);
+                    btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            getDataDetails(sklad_id);
+                        }
+                    });
                     llt.addView(btn);
 
                     details +="name  :" + name;
-                    logview.setText(details);
+
                 }
             }
             @Override
             public void onFailure(Call<List<Sklad>> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    public void getDataDetails(int s_id){
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://php7.demo20277.atservers.net/web/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        GetDataService service = retrofit.create(GetDataService.class);
+        Call<List<Data>> repos = service.getDataDetails(s_id);
+        logview.setText(String.valueOf(s_id)+"new");
+
+        repos.enqueue(new Callback<List<Data>>() {
+            @Override
+            public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {
+                final List<Data> data = response.body();
+
+                String details = "";
+                for (int i = 0; i<data.size();i++){
+                    String T1 = data.get(i).getT1();
+                    details +="T1  :" + T1;
+                    logview.setText(details);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Data>> call, Throwable t) {
 
             }
         });
