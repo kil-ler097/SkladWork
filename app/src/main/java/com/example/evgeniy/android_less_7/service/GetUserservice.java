@@ -23,8 +23,6 @@ public interface GetUserservice {
     @POST("user/authorize/")
     Call<Users> checkUserInfo(@Field("username") String username,@Field("password") String password);
 
-
-
 }
 
 

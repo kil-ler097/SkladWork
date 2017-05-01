@@ -99,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
                     if (rev.equals("[true]")){
                         GooDAuth();
                     }else{
+
+                        GooDAuth();//TODO delete this
                         logview.setText("Неправильный логин или пароль");
                     }
                 }
