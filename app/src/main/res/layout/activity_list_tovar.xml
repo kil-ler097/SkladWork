@@ -11,4 +11,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.evgeniy.android_less_7.ListTovarActivity">
 
+    <Button
+        android:text="@string/add_good"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button6"
+        android:onClick="newGood"
+        />
+
 </LinearLayout>

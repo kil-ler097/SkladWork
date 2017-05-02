@@ -26,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
+        android:lines="3"
         android:ems="10"
         android:id="@+id/editText3"
         android:layout_below="@+id/editText"
@@ -38,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
+        android:lines="3"
         android:ems="10"
         android:layout_below="@+id/editText3"
         android:layout_alignParentStart="true"
@@ -46,25 +48,36 @@
         android:layout_alignParentEnd="true"
         android:text="Parametr" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/editText5"
-        android:layout_alignParentEnd="true"
-        android:text="Count" />
-
     <Button
         android:text="@string/Save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText5"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="24dp"
         android:id="@+id/button5"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="saveGood"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:lines="3"
+        android:ems="10"
+        android:id="@+id/editText5"
+        android:text="Count"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/editText4"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/editText5"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

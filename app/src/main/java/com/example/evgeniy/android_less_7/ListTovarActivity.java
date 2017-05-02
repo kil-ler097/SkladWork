@@ -80,5 +80,13 @@ public class ListTovarActivity extends AppCompatActivity {
 
     }
 
+    public void newGood(View view){
+        String s_id = getIntent().getStringExtra("sklad_id");
+
+        Intent intent = new Intent(ListTovarActivity.this, InfoTovarActivity.class);
+        intent.putExtra("data_id","0");
+        intent.putExtra("s_id",s_id);
+        startActivity(intent);
+    }
 
 }

@@ -1,5 +1,7 @@
 package com.example.evgeniy.android_less_7.model;
 
+import android.text.Editable;
+
 /**
  * Created by Evgeniy on 01.05.2017.
  */

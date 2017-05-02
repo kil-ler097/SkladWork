@@ -34,7 +34,7 @@ public class LastActivity extends AppCompatActivity {
 
     private EditText txtLogin;
     private EditText txtPassword;
-    private TextView logview;
+  //  private TextView logview;
 //android.support.constraint.ConstraintLayout
     private LinearLayout llt;
 
@@ -43,7 +43,7 @@ public class LastActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lastlayout);
 
-        logview = (TextView) findViewById(R.id.textView3);
+      //  logview = (TextView) findViewById(R.id.textView3);
         getSkladDetails();
 
     }
