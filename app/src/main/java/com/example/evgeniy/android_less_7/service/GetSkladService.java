@@ -5,6 +5,7 @@ package com.example.evgeniy.android_less_7.service;
  */
 
 import com.example.evgeniy.android_less_7.model.Sklad;
+import com.example.evgeniy.android_less_7.model.SkladInfo;
 import com.example.evgeniy.android_less_7.model.Users;
 
 import java.util.List;
@@ -19,8 +20,13 @@ public interface GetSkladService {
     @GET("sklad/")
     Call<List<Sklad>> getSkladDetails();
 
-//    @FormUrlEncoded
-//    @POST("user/authorize/")
-//    Call<Users> checkUserInfo(@Field("username") String username,@Field("password") String password);
+    @FormUrlEncoded
+    @POST("sklad/getskladbyid/")
+    Call<List<SkladInfo>> getSkladById(@Field("s_id") String s_id);
+
+
+    @FormUrlEncoded
+    @POST("sklad/setskladinfo/")
+    Call<List<SkladInfo>> setSkladInfo(@Field("s_id") String s_id, @Field("s_name") String s_name, @Field("s_adress") String s_adress);
 
 }

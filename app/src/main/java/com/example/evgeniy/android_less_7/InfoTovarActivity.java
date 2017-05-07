@@ -117,7 +117,7 @@ public class InfoTovarActivity extends AppCompatActivity {
         });
         }else{
             s_id = getIntent().getStringExtra("s_id");
-            logview.setText(s_id);
+          //  logview.setText(s_id);
             Call<List<Data>> repos = service.saveNewGood(id,tx1,tx2,tx3,cn1,Integer.parseInt(s_id));
             repos.enqueue(new Callback<List<Data>>() {
                 @Override

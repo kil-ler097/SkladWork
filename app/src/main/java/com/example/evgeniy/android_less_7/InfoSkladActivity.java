@@ -18,8 +18,10 @@ public class InfoSkladActivity extends AppCompatActivity {
 
     public void AboutSklad(View view){
         String s_id = getIntent().getStringExtra("sklad_id");
+        String s_name = getIntent().getStringExtra("sklad_name");;
         Intent intent = new Intent(InfoSkladActivity.this, AboutSkladActivity.class);
         intent.putExtra("sklad_id",s_id);
+        intent.putExtra("sklad_name",s_name);
         startActivity(intent);
     }
 

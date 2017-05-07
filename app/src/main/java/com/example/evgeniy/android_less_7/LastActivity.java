@@ -76,6 +76,7 @@ public class LastActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             Intent intent = new Intent(LastActivity.this, InfoSkladActivity.class);
                             intent.putExtra("sklad_id",Integer.toString(sklad_id));
+                            intent.putExtra("sklad_name",name);
                             startActivity(intent);
                          //   getDataDetails(sklad_id);
                         }
@@ -94,7 +95,11 @@ public class LastActivity extends AppCompatActivity {
 
     }
 
-
+    public void addSklad(View view){
+        Intent intent = new Intent(LastActivity.this, AboutSkladActivity.class);
+        intent.putExtra("sklad_id","0");
+        startActivity(intent);
+    }
 
     public void back (View view){
         Intent intent = new Intent(this,MainActivity.class);
