@@ -22,7 +22,9 @@
         <activity android:name=".ListTovarActivity" />
         <activity android:name=".AboutSkladActivity" />
         <activity android:name=".InfoTovarActivity" />
-        <activity android:name=".SupplierActivity"></activity>
+        <activity android:name=".SupplierActivity" />
+        <activity android:name=".CategorySettingsActivity" />
+        <activity android:name=".InfoCategoryActivity"></activity>
     </application>
 
 </manifest>

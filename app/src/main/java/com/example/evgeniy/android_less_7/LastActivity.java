@@ -107,6 +107,10 @@ public class LastActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void settingsCategory(View voew){
+        Intent intent = new Intent(this,CategorySettingsActivity.class);
+        startActivity(intent);
+    }
 
     public void back (View view){
         Intent intent = new Intent(this,MainActivity.class);

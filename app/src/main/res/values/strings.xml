@@ -16,4 +16,10 @@
     <string name="about_good">Описание</string>
     <string name="good_parametr">Параметры</string>
     <string name="good_count">Количество</string>
+    <string name="add_category">Добавить категорию</string>
+    <string name="category_settings">Управление категориями</string>
+    <string name="supplier_settings">Управление поставщиками</string>
+    <string name="sklad_settings">Управление складами</string>
+    <string name="select_sklad">Выберите склад: </string>
+    <string name="category_name">Имя категории: </string>
 </resources>

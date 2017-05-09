@@ -24,7 +24,6 @@ public interface GetSkladService {
     @POST("sklad/getskladbyid/")
     Call<List<SkladInfo>> getSkladById(@Field("s_id") String s_id);
 
-
     @FormUrlEncoded
     @POST("sklad/setskladinfo/")
     Call<List<SkladInfo>> setSkladInfo(@Field("s_id") String s_id, @Field("s_name") String s_name, @Field("s_adress") String s_adress);
