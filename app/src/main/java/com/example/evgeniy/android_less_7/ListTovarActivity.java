@@ -41,7 +41,6 @@ public class ListTovarActivity extends AppCompatActivity {
                 .build();
         GetDataService service = retrofit.create(GetDataService.class);
         Call<List<Data>> repos = service.getDataDetails(String.valueOf(s_id));
-     //   logview.setText(String.valueOf(s_id)+"new");
 
         repos.enqueue(new Callback<List<Data>>() {
             @Override
@@ -52,10 +51,8 @@ public class ListTovarActivity extends AppCompatActivity {
                 for (int i = 0; i<data.size();i++){
                    String T1 = data.get(i).getT1();
                    final int data_id = data.get(i).getId();
-                 //   details +="T1  :" + T1;
-                   // logview.setText(details);
+
                     Button btn = new Button(ListTovarActivity.this);
-//                    btn.setLayoutParams(layoutParams);
 
                     btn.setText(T1);
                     btn.setId(data_id);
@@ -65,7 +62,6 @@ public class ListTovarActivity extends AppCompatActivity {
                             Intent intent = new Intent(ListTovarActivity.this, InfoTovarActivity.class);
                             intent.putExtra("data_id",Integer.toString(data_id));
                             startActivity(intent);
-                            //   getDataDetails(sklad_id);
                         }
                     });
                     llt.addView(btn);

@@ -29,15 +29,8 @@ public interface GetDataService {
                               @Field("t1") String t1,
                               @Field("t2") String t2,
                               @Field("t3") String t3,
-                              @Field("c11") String c11);
-
-    @FormUrlEncoded
-    @POST("data/setdatabyid/")
-    Call<List<Data>> saveNewGood(@Field("data_id") int data_id,
-                              @Field("t1") String t1,
-                              @Field("t2") String t2,
-                              @Field("t3") String t3,
                               @Field("c11") String c11,
-                              @Field("s_id") int s_id);
+                              @Field("s_id") int s_id,
+                              @Field("selecteg_sup") int selecteg_sup);
 
 }

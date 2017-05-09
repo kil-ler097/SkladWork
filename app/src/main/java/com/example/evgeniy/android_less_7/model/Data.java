@@ -12,6 +12,16 @@ public class Data {
     private String t2;
     private String t3;
     private String c11;
+    private String sup_id;
+
+    public String getSup_id() {
+        return sup_id;
+    }
+
+    public void setSup_id(String sup_id) {
+        this.sup_id = sup_id;
+    }
+
     private int s_id;
 
     public int getId() {

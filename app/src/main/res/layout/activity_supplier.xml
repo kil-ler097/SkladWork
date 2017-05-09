@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_supplier"
     android:layout_width="match_parent"
@@ -10,40 +11,61 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.evgeniy.android_less_7.SupplierActivity">
 
-    <TextView
-        android:text="@string/supplier_name"
+    <ImageButton
         android:layout_width="wrap_content"
+        android:onClick="setSupplierddata"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        app:srcCompat="@android:drawable/ic_menu_save"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textView4" />
+        android:id="@+id/imageButton4" />
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView10"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/textView4"
-        android:layout_marginStart="12dp" />
+        android:id="@+id/textView4"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/imageButton4"
+        android:layout_alignTop="@+id/imageButton4" />
 
     <TextView
         android:text="@string/supplier_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView4"
+        android:id="@+id/textView11"
+        android:layout_above="@+id/editText7"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText8"
+        android:contentDescription="Name"
+        android:layout_above="@+id/editText7"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="12dp"
-        android:id="@+id/textView11" />
+        android:layout_marginBottom="16dp" />
 
     <TextView
-        android:text="TextView"
+        android:text="@string/supplier_names"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView11"
+        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
-        android:id="@+id/textView12"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true" />
+        android:id="@+id/textView13"
+        android:layout_alignEnd="@+id/textView11" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText7"
+        android:lines="15"
+        android:selectAllOnFocus="true"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageButton4"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>

@@ -6,8 +6,14 @@
     <string name="sklad_name">Название склада:</string>
     <string name="sklad_data">Информация о складе:</string>
     <string name="supplier_name">Название поставщика:</string>
+    <string name="supplier_names">Название поставщика:</string>
     <string name="supplier_data">Информация о поставщикe:</string>
     <string name="Save">Сохранить</string>
     <string name="add_good">Добавить товар</string>
     <string name="add_sklad">Добавить Склад</string>
+    <string name="add_supplier">Добавить Поставщика</string>
+    <string name="good_name">Название товара</string>
+    <string name="about_good">Описание</string>
+    <string name="good_parametr">Параметры</string>
+    <string name="good_count">Количество</string>
 </resources>

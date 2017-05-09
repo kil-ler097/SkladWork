@@ -101,6 +101,13 @@ public class LastActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void addSupplier(View view){
+        Intent intent = new Intent(LastActivity.this, SupplierActivity.class);
+        intent.putExtra("sup_id","0");
+        startActivity(intent);
+    }
+
+
     public void back (View view){
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);

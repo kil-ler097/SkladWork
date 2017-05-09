@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_info_tovar"
     android:layout_width="match_parent"
@@ -8,13 +12,19 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.evgeniy.android_less_7.InfoTovarActivity">
+    tools:context="com.example.evgeniy.android_less_7.InfoTovarActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:text="@string/good_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView7" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
         android:ems="10"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
@@ -22,8 +32,14 @@
         android:id="@+id/editText"
         android:layout_alignParentEnd="true" />
 
+    <TextView
+        android:text="@string/about_good"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView9" />
+
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:lines="3"
@@ -32,11 +48,16 @@
         android:layout_below="@+id/editText"
         android:layout_alignParentStart="true"
         android:layout_marginTop="23dp"
-        android:layout_alignParentEnd="true"
-        android:text="Text" />
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/good_parametr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView10" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:lines="3"
@@ -45,32 +66,25 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="23dp"
         android:id="@+id/editText4"
-        android:layout_alignParentEnd="true"
-        android:text="Parametr" />
+        android:layout_alignParentEnd="true" />
 
-    <Button
-        android:text="@string/Save"
-        android:layout_width="wrap_content"
+    <TextView
+        android:text="@string/good_count"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button5"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="saveGood"/>
+        android:id="@+id/textView12" />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
         android:inputType="textMultiLine"
         android:lines="3"
         android:ems="10"
         android:id="@+id/editText5"
-        android:text="Count"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/editText4"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-
         />
 
     <TextView
@@ -79,5 +93,54 @@
         android:id="@+id/textView3"
         android:layout_below="@+id/editText5"
         android:layout_alignParentStart="true" />
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/RRG"
+        >
 
-</RelativeLayout>
+    </RadioGroup>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_menu_save"
+            android:id="@+id/imageButton2"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentStart="false"
+            android:onClick="saveGood"
+            android:elevation="0dp"
+            android:scaleType="fitCenter"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_menu_myplaces"
+            android:id="@+id/imageButton3"
+            android:onClick="SupplierList"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_menu_delete"
+            android:id="@+id/imageButton"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+
+    </ScrollView>
+
