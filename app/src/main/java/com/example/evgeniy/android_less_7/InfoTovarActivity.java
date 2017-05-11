@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.evgeniy.android_less_7.model.Data;
 import com.example.evgeniy.android_less_7.model.SupplierData;
@@ -110,25 +111,22 @@ public class InfoTovarActivity extends AppCompatActivity {
         String tx3 = t33.getText().toString();
         String cn1 = c111.getText().toString();
         s_id = getIntent().getStringExtra("s_id");
-       // logview = (TextView) findViewById(R.id.textView3);
-        Log.d("SAVE TOVAR","SELECTED SUP="+selected_sup);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://php7.demo20277.atservers.net/web/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         GetDataService service = retrofit.create(GetDataService.class);
-        // t11.setText("Go23of");
-        logview.setText(String.valueOf(selected_sup));
-
             Call<List<Data>> repos = service.saveGood(id, tx1, tx2, tx3, cn1, Integer.parseInt(s_id),selected_sup);
             repos.enqueue(new Callback<List<Data>>() {
                 @Override
                 public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {
-
+                    Toast.makeText(getBaseContext(),"Товар тспешно сохранен",Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onFailure(Call<List<Data>> call, Throwable t) {
+                    Toast.makeText(getBaseContext(),"Ошибка",Toast.LENGTH_SHORT).show();
                 }
             });
 

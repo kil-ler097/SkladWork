@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.evgeniy.android_less_7.model.Users;
 import com.example.evgeniy.android_less_7.service.GetUserservice;
@@ -48,33 +49,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//    public void getUserDetails(){
-//
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("http://php7.demo20277.atservers.net/web/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        GetUserservice service = retrofit.create(GetUserservice.class);
-//        Call<List<Users>> repos = service.getUserDetails();
-//
-//        repos.enqueue(new Callback<List<Users>>() {
-//            @Override
-//            public void onResponse(Call<List<Users>> call, Response<List<Users>> response) {
-//                List<Users> users = response.body();
-//                String details = "";
-//                for (int i = 0; i<users.size();i++){
-//                    String name = users.get(i).getUsername();
-//                    details +="name  :" + name;
-//                    logview.setText(details);
-//                }
-//            }
-//            @Override
-//            public void onFailure(Call<List<Users>> call, Throwable t) {
-//
-//            }
-//        });
-//    }
-
         public void checkUserInfo(View view){
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://php7.demo20277.atservers.net/web/")
@@ -85,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
             Users users = new Users();
             users.setUsername(login.getText().toString());
             users.setPassword(password.getText().toString());
-           // logview.setText(users.getUsername()+users.getPassword());
 
            final Call<Users> repos = service.checkUserInfo(users.getUsername(),users.getPassword());
 
@@ -98,12 +71,13 @@ public class MainActivity extends AppCompatActivity {
                         GooDAuth();
                     }else{
                         GooDAuth();//TODO delete this
-                        logview.setText("Неправильный логин или пароль");
+                        Toast.makeText(getBaseContext(),"Неправильный логин или пароль",Toast.LENGTH_SHORT).show();
+
                     }
                 }
                 @Override
                 public void onFailure(Call<Users> call, Throwable t) {
-                    logview.setText(t.getMessage()+"\n");
+                    Toast.makeText(getBaseContext(),t.getMessage()+"\n",Toast.LENGTH_SHORT).show();
                 }
             });
 
