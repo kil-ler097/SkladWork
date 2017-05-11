@@ -22,4 +22,5 @@
     <string name="sklad_settings">Управление складами</string>
     <string name="select_sklad">Выберите склад: </string>
     <string name="category_name">Имя категории: </string>
+    <string name="filtr">Фильтр</string>
 </resources>

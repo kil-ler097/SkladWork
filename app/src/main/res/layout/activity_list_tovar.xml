@@ -14,6 +14,13 @@
     android:layout_height="match_parent"
     tools:context="com.example.evgeniy.android_less_7.ListTovarActivity">
 
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+
+        android:id="@+id/spinner"
+        android:prompt="@string/filtr" />
+
     <Button
         android:text="@string/add_good"
         android:layout_width="match_parent"

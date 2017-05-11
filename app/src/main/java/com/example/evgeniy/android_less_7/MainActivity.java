@@ -94,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(Call<Users> call, Response<Users> response) {
                     List<String> json = response.headers().values("Message");
                     String rev = json.toString();
-
                     if (rev.equals("[true]")){
                         GooDAuth();
                     }else{
