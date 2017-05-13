@@ -25,12 +25,12 @@ public interface GetDataService {
 
     @FormUrlEncoded
     @POST("data/setdatabyid/")
-    Call<List<Data>> saveGood(@Field("data_id") int data_id,
+    Call<List<Data>> saveGood(@Field("data_id") String data_id,
                               @Field("t1") String t1,
                               @Field("t2") String t2,
                               @Field("t3") String t3,
                               @Field("c11") String c11,
-                              @Field("s_id") int s_id,
-                              @Field("selecteg_sup") int selecteg_sup);
+                              @Field("s_id") String s_id,
+                              @Field("selected_sup") String selected_sup);
 
 }

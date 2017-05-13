@@ -35,18 +35,20 @@ public class InfoTovarActivity extends AppCompatActivity {
     private TextView c11;
     private TextView logview;
     private RadioGroup radio;
-    String s_id;
-    protected String sup_id;
-    int id;
+    private String s_id;
+    private String sup_id;
+    private int id;
+    private String data_id;
+    private Integer selected_sup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_tovar);
-        String data_id = getIntent().getStringExtra("data_id");
+        data_id = getIntent().getStringExtra("data_id");
+        s_id = getIntent().getStringExtra("s_id");
 
         if (data_id.equals("0")) {
-            s_id = getIntent().getStringExtra("s_id");
             ImageButton sup_btn = (ImageButton) findViewById(R.id.imageButton3);
             sup_btn.setVisibility(View.INVISIBLE);
             GetSupplierlist();
@@ -105,19 +107,25 @@ public class InfoTovarActivity extends AppCompatActivity {
         EditText t33 = (EditText) findViewById(R.id.editText4);
         EditText c111 = (EditText) findViewById(R.id.editText5);
         RadioGroup radio = (RadioGroup) findViewById(R.id.RRG);
-        int selected_sup = radio.getCheckedRadioButtonId();
+
         String tx1 = t11.getText().toString();
         String tx2 = t22.getText().toString();
         String tx3 = t33.getText().toString();
         String cn1 = c111.getText().toString();
-        s_id = getIntent().getStringExtra("s_id");
+
+        if (data_id.equals("0")) {
+            Toast.makeText(getBaseContext(),"11",Toast.LENGTH_SHORT).show();
+            selected_sup = radio.getCheckedRadioButtonId();
+        }else{
+            selected_sup = 0;
+        }
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://php7.demo20277.atservers.net/web/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         GetDataService service = retrofit.create(GetDataService.class);
-            Call<List<Data>> repos = service.saveGood(id, tx1, tx2, tx3, cn1, Integer.parseInt(s_id),selected_sup);
+            Call<List<Data>> repos = service.saveGood(data_id, tx1, tx2, tx3, cn1, s_id,selected_sup.toString());
             repos.enqueue(new Callback<List<Data>>() {
                 @Override
                 public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {
@@ -129,19 +137,16 @@ public class InfoTovarActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(),"Ошибка",Toast.LENGTH_SHORT).show();
                 }
             });
-
-
     }
 
-
+    //Информация о поставщике
     public void SupplierList(View view) {
-
         Intent intent = new Intent(InfoTovarActivity.this, SupplierActivity.class);
         intent.putExtra("sup_id", sup_id);
         startActivity(intent);
     }
-    //Список поставщиков
 
+    //Список поставщиков
     private void GetSupplierlist() {
         llt = (LinearLayout) findViewById(R.id.activity_info_tovar);
         rbg = (RadioGroup) findViewById(R.id.RRG);
