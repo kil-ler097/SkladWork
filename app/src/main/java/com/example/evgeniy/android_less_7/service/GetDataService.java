@@ -31,6 +31,12 @@ public interface GetDataService {
                               @Field("t3") String t3,
                               @Field("c11") String c11,
                               @Field("s_id") String s_id,
-                              @Field("selected_sup") String selected_sup);
+                              @Field("selected_sup") String selected_sup,
+                              @Field("category_name") String category_name
+                              );
+
+    @FormUrlEncoded
+    @POST("data/getdatabycategory/")
+    Call<List<Data>> getDataBycategory(@Field("c_name") String c_name);
 
 }

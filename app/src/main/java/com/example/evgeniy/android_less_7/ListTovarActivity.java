@@ -17,9 +17,11 @@ import com.example.evgeniy.android_less_7.model.Data;
 import com.example.evgeniy.android_less_7.service.GetCategoryService;
 import com.example.evgeniy.android_less_7.service.GetDataService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,19 +31,23 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ListTovarActivity extends AppCompatActivity {
     private LinearLayout llt;
     public TextView logview;
+    String s_id;
+    public ArrayAdapter<String> adapter;
+    public List<String> btn_adapter = new ArrayList<String>();
     public List<String> categorys = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_tovar);
-        String s_id = getIntent().getStringExtra("sklad_id");
+        s_id = getIntent().getStringExtra("sklad_id");
 
-        getDataDetails(s_id);
+//      getDataDetails(s_id);
         GetListCategory();
         SetSpinner();
     }
 
-    public void getDataDetails(String s_id){
+    public void getDataDetails(String s_id) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://php7.demo20277.atservers.net/web/")
@@ -54,26 +60,7 @@ public class ListTovarActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {
                 final List<Data> data = response.body();
-                llt = (LinearLayout) findViewById(R.id.activity_list_tovar);
-                String details = "";
-                for (int i = 0; i<data.size();i++){
-                   String T1 = data.get(i).getT1();
-                   final int data_id = data.get(i).getId();
-
-                    Button btn = new Button(ListTovarActivity.this);
-
-                    btn.setText(T1);
-                    btn.setId(data_id);
-                    btn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(ListTovarActivity.this, InfoTovarActivity.class);
-                            intent.putExtra("data_id",Integer.toString(data_id));
-                            startActivity(intent);
-                        }
-                    });
-                    llt.addView(btn);
-                }
+                setButtons(data);
             }
 
             @Override
@@ -84,17 +71,18 @@ public class ListTovarActivity extends AppCompatActivity {
 
     }
 
-    private void SetSpinner(){
+    private void SetSpinner() {
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categorys);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categorys);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);//Заполняем снипер
-        spinner.setPrompt("Фильтр...");
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getBaseContext(),"124",Toast.LENGTH_SHORT).show();
+                String c_name = parent.getSelectedItem().toString();
+                getFilter(c_name);
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -102,16 +90,16 @@ public class ListTovarActivity extends AppCompatActivity {
 
     }
 
-    public void newGood(View view){
+    public void newGood(View view) {
         String s_id = getIntent().getStringExtra("sklad_id");
 
         Intent intent = new Intent(ListTovarActivity.this, InfoTovarActivity.class);
-        intent.putExtra("data_id","0");
-        intent.putExtra("s_id",s_id);
+        intent.putExtra("data_id", "0");
+        intent.putExtra("s_id", s_id);
         startActivity(intent);
     }
 
-    protected void GetListCategory(){
+    protected void GetListCategory() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://php7.demo20277.atservers.net/web/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -121,15 +109,15 @@ public class ListTovarActivity extends AppCompatActivity {
         repos.enqueue(new Callback<List<Category>>() {
             @Override
             public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
-                List <Category> category = response.body();
+                List<Category> category = response.body();
                 llt = (LinearLayout) findViewById(R.id.activity_category_settings);
 
-                for (int i=0;i<response.body().size();i++){
+                for (int i = 0; i < response.body().size(); i++) {
                     final String c_name = category.get(i).getName();
                     final int c_id = category.get(i).getId();
                     categorys.add(c_name);
-
                 }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -138,6 +126,61 @@ public class ListTovarActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void getFilter(String c_name) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://php7.demo20277.atservers.net/web/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        GetDataService service = retrofit.create(GetDataService.class);
+        final Call<List<Data>> repos = service.getDataBycategory(c_name);
+
+        repos.enqueue(new Callback<List<Data>>() {
+            @Override
+            public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {
+                List<Data> data = response.body();
+                setButtons(data);
+            }
+
+            @Override
+            public void onFailure(Call<List<Data>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void setButtons(List<Data> data) {
+        llt = (LinearLayout) findViewById(R.id.activity_list_tovar);
+        btn_adapter.clear();
+        destroyBtn(btn_adapter);
+        for (int i = 0; i < data.size(); i++) {
+            String T1 = data.get(i).getT1();
+            final int data_id = data.get(i).getId();
+            Button btn = new Button(ListTovarActivity.this);
+            btn.setText(T1);
+            btn.setId(data_id);
+            btn_adapter.add(String.valueOf(data_id));
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ListTovarActivity.this, InfoTovarActivity.class);
+                    intent.putExtra("data_id", Integer.toString(data_id));
+                    startActivity(intent);
+                }
+            });
+            llt.addView(btn);
+        }
+    }
+
+    public void destroyBtn(List<String> btn_adapter){
+        for (int i=0;i<btn_adapter.size();i++){
+            // Button btn = (Button) findViewById(btn_adapter.get(i));
+            Toast.makeText(getBaseContext(),btn_adapter.get(i).toString(),Toast.LENGTH_SHORT).show();
+
+        }
+
+    }
+
 
 
 
