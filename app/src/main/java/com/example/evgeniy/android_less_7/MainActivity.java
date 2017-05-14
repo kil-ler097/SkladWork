@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     if (rev.equals("[true]")){
                         GooDAuth();
                     }else{
-                        GooDAuth();//TODO delete this
+                       // GooDAuth();//TODO delete this
                         Toast.makeText(getBaseContext(),"Неправильный логин или пароль",Toast.LENGTH_SHORT).show();
 
                     }
