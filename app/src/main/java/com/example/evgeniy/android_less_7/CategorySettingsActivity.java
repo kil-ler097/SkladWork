@@ -74,4 +74,5 @@ public class CategorySettingsActivity extends AppCompatActivity {
         intent.putExtra("c_id","0");
         startActivity(intent);
     }
+
 }

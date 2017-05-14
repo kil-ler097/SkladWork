@@ -10,9 +10,11 @@ import com.example.evgeniy.android_less_7.model.Data;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface GetDataService {
     @FormUrlEncoded
@@ -38,5 +40,9 @@ public interface GetDataService {
     @FormUrlEncoded
     @POST("data/getdatabycategory/")
     Call<List<Data>> getDataBycategory(@Field("c_name") String c_name);
+
+    @FormUrlEncoded
+    @POST("data/deleteitem/")
+    Call<List<Data>> deleteItemdata(@Field("data_id") String data_id);
 
 }

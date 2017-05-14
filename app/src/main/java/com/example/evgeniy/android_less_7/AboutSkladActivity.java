@@ -96,4 +96,27 @@ public class AboutSkladActivity extends AppCompatActivity {
 
     }
 
+    public void deletSklad(View view){
+        String s_id = getIntent().getStringExtra("sklad_id");
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://php7.demo20277.atservers.net/web/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        GetSkladService service = retrofit.create(GetSkladService.class);
+        Call<List<SkladInfo>> repos = service.deleteSklad(s_id);
+        repos.enqueue(new Callback<List<SkladInfo>>() {
+            @Override
+            public void onResponse(Call<List<SkladInfo>> call, Response<List<SkladInfo>> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<List<SkladInfo>> call, Throwable t) {
+
+            }
+        });
+
+    }
+
 }

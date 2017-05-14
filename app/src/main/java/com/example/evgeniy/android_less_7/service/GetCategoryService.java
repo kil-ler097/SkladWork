@@ -27,4 +27,7 @@ public interface GetCategoryService {
     Call<List<Category>> setCategory(@Field("c_id") String c_id, @Field("c_name") String c_name);
 
 
+    @FormUrlEncoded
+    @POST("category/deletecategory/")
+    Call<List<Category>> deleteCategory(@Field("c_id") String c_id);
 }

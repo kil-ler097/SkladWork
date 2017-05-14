@@ -19,7 +19,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class InfoCategoryActivity extends AppCompatActivity {
-    protected String c_id;
+    public String c_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,4 +80,26 @@ public class InfoCategoryActivity extends AppCompatActivity {
         });
 
     }
+
+    public void deleteCategory(View view){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://php7.demo20277.atservers.net/web/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        GetCategoryService service = retrofit.create(GetCategoryService.class);
+        final Call<List<Category>> repos = service.deleteCategory(c_id);
+        repos.enqueue(new Callback<List<Category>>() {
+            @Override
+            public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Category>> call, Throwable t) {
+
+            }
+        });
+
+    }
+
 }

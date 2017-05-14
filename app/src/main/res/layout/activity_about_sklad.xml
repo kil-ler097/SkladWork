@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_about_sklad"
     android:layout_width="match_parent"
@@ -49,13 +50,22 @@
         android:layout_alignBottom="@+id/editText2"
         android:layout_alignParentStart="true" />
 
-    <Button
-        android:text="@string/Save"
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/button7"
+        app:srcCompat="@android:drawable/ic_menu_save"
         android:onClick="SaveSklad"
+
+        android:id="@+id/imageButton10"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_delete"
+        android:id="@+id/imageButton11"
+        android:onClick="deletSklad"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 </RelativeLayout>

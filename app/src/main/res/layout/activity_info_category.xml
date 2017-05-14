@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             app:srcCompat="@android:drawable/ic_menu_delete"
             android:id="@+id/imageButton7"
+            android:onClick="deleteCategory"
             android:layout_weight="1" />
     </LinearLayout>
 

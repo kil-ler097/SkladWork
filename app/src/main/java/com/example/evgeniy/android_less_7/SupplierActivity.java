@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.evgeniy.android_less_7.model.Data;
 import com.example.evgeniy.android_less_7.model.SupplierData;
+import com.example.evgeniy.android_less_7.service.GetDataService;
 import com.example.evgeniy.android_less_7.service.GetSupplierService;
 
 import java.util.List;
@@ -64,9 +67,6 @@ public class SupplierActivity extends AppCompatActivity {
     public void setSupplierddata(View view){
         EditText  name_a = (EditText) findViewById(R.id.editText8) ;
         EditText  data_sup_a = (EditText) findViewById(R.id.editText7) ;
-//        log = (TextView) findViewById(R.id.textView4);
-//        String logz = data_sup_a.getText().toString();
-//        log.setText(logz);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://php7.demo20277.atservers.net/web/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -83,6 +83,29 @@ public class SupplierActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<SupplierData>> call, Throwable t) {
+
+            }
+        });
+    }
+
+
+    public void deleteSup(View view){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://php7.demo20277.atservers.net/web/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        GetSupplierService service = retrofit.create(GetSupplierService.class);
+        Call<List<SupplierData>> repos = service.deletesupplier(sup_id);
+        repos.enqueue(new Callback<List<SupplierData>>() {
+            @Override
+            public void onResponse(Call<List<SupplierData>> call, Response<List<SupplierData>> response) {
+                Toast.makeText(getBaseContext(),"Успешно удален",Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onFailure(Call<List<SupplierData>> call, Throwable t) {
+                Toast.makeText(getBaseContext(),"Успешно удален",Toast.LENGTH_SHORT).show();
 
             }
         });

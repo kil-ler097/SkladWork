@@ -68,4 +68,13 @@
         android:layout_above="@+id/imageButton4"
         android:layout_alignParentStart="true" />
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_delete"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="deleteSup"
+        android:id="@+id/imageButton12" />
+
 </RelativeLayout>

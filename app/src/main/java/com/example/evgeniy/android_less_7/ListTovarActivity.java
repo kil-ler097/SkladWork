@@ -48,7 +48,6 @@ public class ListTovarActivity extends AppCompatActivity {
     }
 
     public void getDataDetails(String s_id) {
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://php7.demo20277.atservers.net/web/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -68,7 +67,6 @@ public class ListTovarActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     private void SetSpinner() {

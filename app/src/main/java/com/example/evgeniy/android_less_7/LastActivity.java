@@ -29,12 +29,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 
-
 public class LastActivity extends AppCompatActivity {
 
     private EditText txtLogin;
     private EditText txtPassword;
-  //  private TextView logview;
+    //  private TextView logview;
 //android.support.constraint.ConstraintLayout
     private LinearLayout llt;
 
@@ -43,12 +42,12 @@ public class LastActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lastlayout);
 
-      //  logview = (TextView) findViewById(R.id.textView3);
+        //  logview = (TextView) findViewById(R.id.textView3);
         getSkladDetails();
 
     }
 
-    public void getSkladDetails(){
+    public void getSkladDetails() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://php7.demo20277.atservers.net/web/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -59,12 +58,12 @@ public class LastActivity extends AppCompatActivity {
         repos.enqueue(new Callback<List<Sklad>>() {
             @Override
             public void onResponse(Call<List<Sklad>> call, Response<List<Sklad>> response) {
-                    final List<Sklad> sklad = response.body();
-                    String details = "";
+                final List<Sklad> sklad = response.body();
+                String details = "";
                 llt = (LinearLayout) findViewById(R.id.container2);
                 Button btn = new Button(LastActivity.this);
 
-                for (int i = 0; i<sklad.size();i++){
+                for (int i = 0; i < sklad.size(); i++) {
                     final String name = sklad.get(i).getName();
                     final int sklad_id = sklad.get(i).getId();
                     btn = new Button(LastActivity.this);
@@ -75,18 +74,18 @@ public class LastActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(LastActivity.this, InfoSkladActivity.class);
-                            intent.putExtra("sklad_id",Integer.toString(sklad_id));
-                            intent.putExtra("sklad_name",name);
+                            intent.putExtra("sklad_id", Integer.toString(sklad_id));
+                            intent.putExtra("sklad_name", name);
                             startActivity(intent);
-                         //   getDataDetails(sklad_id);
+                            //   getDataDetails(sklad_id);
                         }
                     });
                     llt.addView(btn);
-
-                    details +="name  :" + name;
+                    details += "name  :" + name;
 
                 }
             }
+
             @Override
             public void onFailure(Call<List<Sklad>> call, Throwable t) {
 
@@ -95,25 +94,35 @@ public class LastActivity extends AppCompatActivity {
 
     }
 
-    public void addSklad(View view){
+    public void addSklad(View view) {
         Intent intent = new Intent(LastActivity.this, AboutSkladActivity.class);
-        intent.putExtra("sklad_id","0");
+        intent.putExtra("sklad_id", "0");
         startActivity(intent);
     }
 
-    public void addSupplier(View view){
+    public void addSupplier(View view) {
         Intent intent = new Intent(LastActivity.this, SupplierActivity.class);
-        intent.putExtra("sup_id","0");
+        intent.putExtra("sup_id", "0");
         startActivity(intent);
     }
 
-    public void settingsCategory(View voew){
-        Intent intent = new Intent(this,CategorySettingsActivity.class);
+    public void settingsCategory(View voew) {
+        Intent intent = new Intent(this, CategorySettingsActivity.class);
         startActivity(intent);
     }
 
-    public void back (View view){
-        Intent intent = new Intent(this,MainActivity.class);
+    public void settingsSklad(View voew) {
+        Intent intent = new Intent(this, SkladSettingsActivity.class);
+        startActivity(intent);
+    }
+
+    public void settingsSupplier(View voew) {
+        Intent intent = new Intent(this, SupplierSettingsActivity.class);
+        startActivity(intent);
+    }
+
+    public void back(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

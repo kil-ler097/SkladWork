@@ -25,6 +25,10 @@ public interface GetSupplierService
     Call<List<SupplierData>> getSupplierById(@Field("sup_id") String sup_id);
 
     @FormUrlEncoded
+    @POST("supplier/deletesupplier/")
+    Call<List<SupplierData>> deletesupplier(@Field("sup_id") String sup_id);
+
+    @FormUrlEncoded
     @POST("supplier/setsupplierbyid/")
     Call<List<SupplierData>> setSupplierById(@Field("sup_id") String sup_id, @Field("sup_name") String name,@Field("sup_data") String data);
 }

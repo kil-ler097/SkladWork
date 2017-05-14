@@ -241,5 +241,25 @@ public class InfoTovarActivity extends AppCompatActivity {
             }
         });
     }
+    public void DeleteItem(View view){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://php7.demo20277.atservers.net/web/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        GetDataService service = retrofit.create(GetDataService.class);
+        Call<List<Data>> repos = service.deleteItemdata(data_id);
+        repos.enqueue(new Callback<List<Data>>() {
+            @Override
+            public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Data>> call, Throwable t) {
+                Toast.makeText(getBaseContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
 
 }
