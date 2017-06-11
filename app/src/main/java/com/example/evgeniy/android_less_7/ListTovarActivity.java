@@ -126,12 +126,14 @@ public class ListTovarActivity extends AppCompatActivity {
     }
 
     public void getFilter(String c_name) {
+        String s_id = getIntent().getStringExtra("sklad_id");
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://php7.demo20277.atservers.net/web/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         GetDataService service = retrofit.create(GetDataService.class);
-        final Call<List<Data>> repos = service.getDataBycategory(c_name);
+        final Call<List<Data>> repos = service.getDataBycategory(c_name,s_id);
 
         repos.enqueue(new Callback<List<Data>>() {
             @Override
@@ -148,15 +150,19 @@ public class ListTovarActivity extends AppCompatActivity {
     }
 
     public void setButtons(List<Data> data) {
+
         llt = (LinearLayout) findViewById(R.id.activity_list_tovar);
-        btn_adapter.clear();
-        destroyBtn(btn_adapter);
+       btn_adapter.clear();
+       // destroyBtn(btn_adapter);
+    //    Toast.makeText(getBaseContext(), Integer.toString(data.size()),Toast.LENGTH_SHORT).show();
+
         for (int i = 0; i < data.size(); i++) {
             String T1 = data.get(i).getT1();
             final int data_id = data.get(i).getId();
             Button btn = new Button(ListTovarActivity.this);
             btn.setText(T1);
             btn.setId(data_id);
+
             btn_adapter.add(String.valueOf(data_id));
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
