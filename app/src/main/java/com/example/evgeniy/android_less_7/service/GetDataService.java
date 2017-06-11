@@ -39,7 +39,7 @@ public interface GetDataService {
 
     @FormUrlEncoded
     @POST("data/getdatabycategory/")
-    Call<List<Data>> getDataBycategory(@Field("c_name") String c_name);
+    Call<List<Data>> getDataBycategory(@Field("c_name") String c_name, @Field("s_id") String s_id);
 
     @FormUrlEncoded
     @POST("data/deleteitem/")
